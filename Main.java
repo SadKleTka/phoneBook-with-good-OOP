@@ -98,20 +98,48 @@ public class Main {
     public static void findContact(phoneBook phoneBook, Scanner scan) {
         while (true) {
             System.out.println("\nEnter \"back\" to back in the main menu or \"exit\" to leave from the app");
-            System.out.print("\n\nWrite name: ");
-            String name = scan.nextLine();
-            if (name.equalsIgnoreCase("back")) {
-                return;
-            } else if (name.equalsIgnoreCase("exit")) {
+            System.out.println("Enter by what do you want to find: \"name\" or \"number\"");
+            String dec = scan.nextLine();
+            if (dec.equalsIgnoreCase("name")) {
+                System.out.print("\n\nWrite name: ");
+                String name = scan.nextLine();
+                if (name.equalsIgnoreCase("back")) {
+                    return;
+                } else if (name.equalsIgnoreCase("exit")) {
+                    System.exit(0);
+                }
+                Contact find = phoneBook.findContact(name);
+                if (find != null) {
+                    System.out.println("=================================================================================================");
+                    System.out.println("Founded a contact: " + "\nName: " + find + "\nNumber: " + find.getNumber());
+                    System.out.println("=================================================================================================");
+                } else {
+                    System.out.println("\uD83D\uDED1There are no contacts with that name\uD83D\uDED1");
+                }
+            } else if (dec.equalsIgnoreCase("number")) {
+                System.out.print("\n\nWrite number: ");
+                String number = scan.nextLine();
+                if (number.matches("\\+996\\d{9}")) {
+                    if (number.equalsIgnoreCase("back")) {
+                        return;
+                    }
+                Contact find = phoneBook.findContactByNumber(number);
+                if (find != null) {
+                    System.out.println("=================================================================================================");
+                    System.out.println("Founded a contact: " + "\nName: " + find + "\nNumber: " + find.getNumber());
+                    System.out.println("=================================================================================================");
+                } else {
+                    System.out.println("\uD83D\uDED1There are no contacts with that number!\uD83D\uDED1");
+                }
+            }
+                else
+                    System.out.println("Wrong type of number!");
+        }
+            else if (dec.equalsIgnoreCase("exit")) {
                 System.exit(0);
             }
-            Contact find = phoneBook.findContact(name);
-            if (find != null) {
-                System.out.println("=================================================================================================");
-                System.out.println("Founded a contact: " + "\nName: " + find + "\nNumber: " + find.getNumber());
-                System.out.println("=================================================================================================");
-            } else {
-                System.out.println("\uD83D\uDED1There are no contacts with that name\uD83D\uDED1");
+            else if (dec.equalsIgnoreCase("back")) {
+                return;
             }
             System.out.println(enterTwoOptions());
             String back = scan.nextLine();

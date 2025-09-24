@@ -21,6 +21,15 @@ public class phoneBook {
         return null;
     }
 
+    public Contact findContactByNumber(String number) {
+        for (Contact i : contacts) {
+            if (i.getNumber().equals(number)) {
+                return i;
+            }
+        }
+        return null;
+    }
+
     public void removeContact(String name) {
         Contact remove = findContact(name);
         if (remove != null) {
