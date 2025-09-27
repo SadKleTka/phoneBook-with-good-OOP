@@ -75,10 +75,9 @@ public class Main {
             if (number.matches("\\+996\\d{9}")) {
                 Contact add = new Contact(name, number);
                 if (phoneBook.addContact(add)) {
-                    phoneBook.addContact(add);
                     System.out.println("You have successfully added a new contact:");
                     System.out.println("=================================================================================================");
-                    System.out.println("Name: " + name + "Number: " + number);
+                    System.out.println("Name: " + name + " Number: " + number);
                     System.out.println("=================================================================================================");
                 }
                 else
